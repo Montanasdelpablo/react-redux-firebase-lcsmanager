@@ -40,7 +40,15 @@ export default class LoginContainer extends React.Component {
       loggedIn: false,
       signUp: false,
       forgotPassword: false,
+      email: '',
+      password: '',
+      updated: false,
     }
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+  }
+  componentWillReceiveProps(props){
+    this.replaceState(props)
   }
 
   changeSignUp(boolean) {
@@ -58,7 +66,7 @@ export default class LoginContainer extends React.Component {
   }
 
   changeForgotPassword(boolean) {
-    console.log(boolean)
+
     if (boolean == true) {
       this.setState({
         forgotPassword: true
@@ -72,20 +80,61 @@ export default class LoginContainer extends React.Component {
 
   }
 
+  handleEmailChange(event) {
+    this.setState({
+      email: event.target.value
+    })
+    console.log("Email state field says: " +  this.state.email)
+  }
+
+  handlePasswordChange(event) {
+    this.setState({
+      password: event.target.value
+    })
+    console.log("Password state field says: " + this.state.password)
+  }
+
+  submitLogin() {
+    var email = this.state.email
+    var password = this.state.password
+
+    console.log(email, password)
+  }
+
+  submitSignup() {
+    var email = this.state.email
+    var password = this.state.password
+
+    console.log(email, password)
+  }
+  submitPasswordForgotten() {
+    var email = this.state.email
+    var password = this.state.password
+
+    console.log(email, password)
+  }
+
+
   renderLogin() {
     return (
-      <div style={containerStyles}>
+      <div style={containerStyles} ref="form">
         <h3> Login </h3>
 
         <TextField
+          defaultValue={this.state.email}
+          type="text"
           style={inputStyles}
-          hintText=""
+          onChange={this.handleEmailChange}
+          ref="email"
           floatingLabelText="E-mail"
           />
         <br />
         <TextField
-        style={inputStyles}
-            hintText=""
+            defaultValue={this.state.password}
+            style={inputStyles}
+            onChange={this.handlePasswordChange}
+            type="password"
+            ref="password"
             floatingLabelText="Password"
           />
         <br />
@@ -100,6 +149,7 @@ export default class LoginContainer extends React.Component {
                       onClick={() => this.changeForgotPassword(true)}
                       label="Forgot password?" />
         <RaisedButton style={buttonStyles}
+                      onClick={() => this.submitLogin()}
                                     label="Log in" />
 
       </div>
@@ -112,15 +162,21 @@ export default class LoginContainer extends React.Component {
         <h3> Sign up </h3>
 
         <TextField
+        defaultValue={this.state.email}
+        type="text"
         style={inputStyles}
-          hintText=""
-          floatingLabelText="E-mail"
+        onChange={this.handleEmailChange}
+        ref="email"
+        floatingLabelText="E-mail"
           />
         <br />
         <TextField
+        defaultValue={this.state.password}
         style={inputStyles}
-            hintText=""
-            floatingLabelText="Password"
+        onChange={this.handlePasswordChange}
+        type="password"
+        ref="password"
+        floatingLabelText="Password"
           />
         <br />
         <br />
@@ -130,6 +186,7 @@ export default class LoginContainer extends React.Component {
                       onClick={() => this.changeSignUp(false)}
                       label="Go back"/>
         <RaisedButton style={buttonStyles}
+                      onClick={() => this.submitPasswordForgotten()}
                       label="Sign up now" />
 
 
@@ -143,9 +200,12 @@ export default class LoginContainer extends React.Component {
         <h3> Forgot password? </h3>
 
         <TextField
+        defaultValue={this.state.email}
+        type="text"
         style={inputStyles}
-          hintText=""
-          floatingLabelText="E-mail"
+        onChange={this.handleEmailChange}
+        ref="email"
+        floatingLabelText="E-mail"
           />
         <br />
         <br />
@@ -156,6 +216,7 @@ export default class LoginContainer extends React.Component {
                       onClick={() => this.changeForgotPassword(false)}
                       label="Go back"/>
         <RaisedButton style={buttonStyles}
+                      onClick={() => this.submitPasswordForgotten()}
                       label="Send to E-mail" />
 
 
@@ -170,6 +231,8 @@ export default class LoginContainer extends React.Component {
       </div>
     )
   }
+
+
 
   render() {
     var render;
