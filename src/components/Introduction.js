@@ -5,6 +5,8 @@ const containerStyles = {
   fontFamily: 'Roboto',
   textAlign: 'center',
   paddingTop: 50,
+  width:600,
+  margin: 'auto',
 }
 
 
@@ -14,7 +16,7 @@ export default class Introduction extends React.Component {
     this.state = {
       header: "LCS Manager",
       subheader: "Welcome to your favorite simulation game!",
-      introduction: "A customised dashboard to fit your needs. Start earning some coins and see how high you can rank up between friends?",
+      introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet eu leo eu convallis. Nam et metus ut massa dignissim gravida. Morbi rutrum facilisis quam lobortis ultricies. Integer sagittis quam eget ultricies efficitur. Pellentesque in ex gravida, vehicula orci in, ornare magna.  ",
     }
   }
 
