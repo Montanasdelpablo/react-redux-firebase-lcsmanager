@@ -1,11 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
+
 import Paper from 'material-ui/Paper';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Introduction from './Introduction.js';
 import LoginHeader from './LoginHeader.js';
 import LoginContainer from './LoginContainer.js';
 import Footer from './Footer.js';
+import Dashboard from './DashboardContainer.js';
 
 const images = {
   headerimg: "../assets/images/StarGuardianLux.jpg"
@@ -18,11 +20,7 @@ const containerStyles = {
 
 }
 
-@connect((store) => {
-  return {
-    users: store.users.users
-  }
-})
+
 
 export default class App extends React.Component {
 
@@ -30,18 +28,22 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <div>
-        <Paper
-        zDepth={4}
-        style={containerStyles}>
+        <div>
+        <MuiThemeProvider>
+            <Paper
+            zDepth={4}
+            style={containerStyles}>
 
-          <LoginHeader />
-          <LoginContainer />
-        </Paper>
+              <LoginHeader />
+              <LoginContainer />
 
-        <Introduction />
-        <Footer />
-      </div>
+            </Paper>
+        </MuiThemeProvider>
+            <Introduction />
+            <Footer />
+
+       </div>
+
     );
   }
 }

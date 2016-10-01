@@ -37,19 +37,24 @@ const buttonStyles = {
   marginLeft: 4,
 }
 
+const initialState = {
+  loggedIn: false,
+  signUp: false,
+  forgotPassword: false,
+  email: '',
+  password: '',
+  updated: false,
+  signUpSuccess: false,
+  logInSuccess: false,
+}
+
 export default class LoginContainer extends React.Component {
+
   constructor(props) {
     super(props)
-    this.state = {
-      loggedIn: false,
-      signUp: false,
-      forgotPassword: false,
-      email: '',
-      password: '',
-      updated: false,
-      signUpSuccess: false,
-      logInSuccess: false,
-    }
+
+    this.state = initialState
+
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.submitSignup = this.submitSignup.bind(this)
@@ -58,6 +63,10 @@ export default class LoginContainer extends React.Component {
 
   componentWillReceiveProps(props){
     this.replaceState(props)
+  }
+
+  reset() {
+    this.setState(initialState);
   }
 
   changeSignUp(boolean) {
@@ -103,12 +112,16 @@ export default class LoginContainer extends React.Component {
     console.log("Password state field says: " + this.state.password)
   }
 
+  handleAuth(result){
+    console.log(result)
+  }
+
   submitLogin() {
     var email = this.state.email
     var password = this.state.password
     var that = this
 
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error, authData) {
+    firebase.auth().signInWithEmailAndPassword(email, password).then((result) => this.handleAuth.bind(this, result)).catch(function(error, authData) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -127,8 +140,6 @@ export default class LoginContainer extends React.Component {
           default:
             console.log("Error logging user in:", error);
         }
-      } else {
-          console.log("Authenticated successfully with payload:", authData);
       }
     });
 
@@ -191,7 +202,7 @@ export default class LoginContainer extends React.Component {
 
     return (
       <div style={containerStyles} ref="form">
-        <h3> Login </h3>
+        <h2> Login </h2>
 
         <TextField
           defaultValue={this.state.email}
@@ -242,7 +253,7 @@ export default class LoginContainer extends React.Component {
 
     return (
       <div style={containerStyles}>
-        <h3> Sign up </h3>
+        <h2> Sign up </h2>
 
         <TextField
         defaultValue={this.state.email}
@@ -284,7 +295,7 @@ export default class LoginContainer extends React.Component {
   renderForgotPassword() {
     return (
       <div style={containerStyles}>
-        <h3> Forgot password? </h3>
+        <h2> Forgot your password? </h2>
 
         <TextField
         defaultValue={this.state.email}

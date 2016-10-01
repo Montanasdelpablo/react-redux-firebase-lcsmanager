@@ -1,12 +1,19 @@
 import React from 'react';
 
 const containerStyles = {
+  backgroundColor: '#3F51B5',
+  minHeight: 600,
   color: 'white',
   fontFamily: 'Roboto',
-  textAlign: 'center',
   paddingTop: 50,
+  width:'100%',
+  margin: 'auto',
+}
+
+const rowStyle = {
   width:600,
   margin: 'auto',
+  textAlign: 'center',
 }
 
 
@@ -25,9 +32,11 @@ export default class Introduction extends React.Component {
   render() {
     return (
       <div style={containerStyles}>
+        <div style={rowStyle}>
         <h1> {this.state.header} </h1>
         <h3> {this.state.subheader} </h3>
         <p> {this.state.introduction} </p>
+        </div>
       </div>
     )
   }

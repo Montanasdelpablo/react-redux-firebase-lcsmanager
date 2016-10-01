@@ -4,10 +4,11 @@ const containerStyles = {
   margin: 'auto',
   width: '30%',
   textAlign: 'center',
-  backgroundColor: 'white',
-  color: '#3F51B5',
+  backgroundColor: '#3F51B5',
+  color: 'white',
   position: 'relative',
   paddingTop: 20,
+  paddingBottom: 15,
 }
 
 

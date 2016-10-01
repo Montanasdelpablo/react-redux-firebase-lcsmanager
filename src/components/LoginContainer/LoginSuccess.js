@@ -1,6 +1,7 @@
 import React from 'react';
 import SkyLight from 'react-skylight';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router'
 
 const containerStyles = {
 
@@ -12,20 +13,24 @@ export default class LoginSuccess extends React.Component {
     super(props)
 
   }
+  
 
   renderLoginSuccess(){
     var that = this
     return (
         <div>
-          <section>
+
+          <Link to="/dashboard">
               <RaisedButton primary={true}
-              fullWidth={true} onClick={() => that.refs.simpleDialog.show()}
+              fullWidth={true}
               label="Enter Dashboard"
               labelColor="white"
               >
 
               </RaisedButton>
-          </section>
+          </Link>
+
+
 
           <SkyLight ref="loginSuccess"
                     title="Hi, this is a modal.">
