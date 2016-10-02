@@ -25,10 +25,9 @@ const containerStyles = {
   paddingTop: 20,
   paddingBottom: 20,
   backgroundColor: 'white',
-  width: 500,
   margin: 'auto',
   textAlign: 'center',
-  
+  width: 500
 }
 
 const inputStyles = {
@@ -212,47 +211,69 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <Row className="display" style={containerStyles}>
-        <Column small={10} medium={6} large={4} offsetOnLarge={4}>
-        <h2> Login </h2>
+      <Row className="display">
+        <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
+          <Row>
+            <Column small={12} large={6}> 
+              <h2> Login </h2>
+            </Column>
+          </Row>
 
-        <TextField
-          defaultValue={this.state.email}
-          type="text"
-          style={inputStyles}
-          onChange={this.handleEmailChange}
-          floatingLabelText="E-mail"
-          />
-        <br />
-        <TextField
-            defaultValue={this.state.password}
-            style={inputStyles}
-            onChange={this.handlePasswordChange}
-            type="password"
-            floatingLabelText="Password"
-          />
-        <br />
-        <br />
-        <LoginSuccess display={this.state.logInSuccess}/>
-        <br />
-        <br />
+          <Row>
+            <Column small={12} large={6}>
+              <TextField
+                defaultValue={this.state.email}
+                type="text"
+                style={inputStyles}
+                onChange={this.handleEmailChange}
+                floatingLabelText="E-mail"
+                />
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <TextField
+                  defaultValue={this.state.password}
+                  style={inputStyles}
+                  onChange={this.handlePasswordChange}
+                  type="password"
+                  floatingLabelText="Password"
+                />
+            </Column>
+          </Row>
 
+          <Row>
+          <Column small={12} large={6}>
+          <LoginSuccess display={this.state.logInSuccess}/>
+          </Column>
+          </Row>
 
+          <br />
+          <br />
 
-
-        <RaisedButton style={buttonStyles}
-                      secondary={true}
-                      onClick={() => this.changeSignUp(true)}
-                      label="Sign up" />
-        <FlatButton style={buttonStyles}
-                      secondary={true}
-                      onClick={() => this.changeForgotPassword(true)}
-                      label="Forgot password?" />
-        <RaisedButton style={buttonStyles}
-                      primary={true}
-                      className="btn btn-primary"
-                      onClick={() => this.submitLogin()}
-                                    label="Log in" />
+          <Row>
+            <Column small={12} large={6}>
+                <RaisedButton style={buttonStyles}
+                              secondary={true}
+                              onClick={() => this.changeSignUp(true)}
+                              label="Sign up" />
+            
+            
+                <FlatButton style={buttonStyles}
+                              secondary={true}
+                              onClick={() => this.changeForgotPassword(true)}
+                              label="Forgot password?" />
+            
+            
+                <RaisedButton style={buttonStyles}
+                                primary={true}
+                                className="btn btn-primary"
+                                onClick={() => this.submitLogin()}
+                                              label="Log in" />
+              
+            </Column>
+          </Row>
+        
         </Column>
       </Row>
     )
@@ -262,8 +283,8 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <Row className="display" style={containerStyles}>
-        <Column small={10} medium={6} large={4} offsetOnLarge={4}>
+      <Row className="display">
+        <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
             <h2> Sign up </h2>
 
             <TextField
@@ -306,8 +327,8 @@ export default class LoginContainer extends React.Component {
 
   renderForgotPassword() {
     return (
-     <Row className="display" style={containerStyles}>
-      <Column small={10} medium={6} large={4} offsetOnLarge={4}>
+     <Row className="display" >
+      <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
         <h2> Forgot your password? </h2>
 
         <TextField
@@ -340,9 +361,11 @@ export default class LoginContainer extends React.Component {
 
   renderNormal() {
     return (
-      <div style={containerStyles}>
-        <p> Hi, it seems there was an error. Try again in a few minutes. </p>
-      </div>
+      <Row style={containerStyles}>
+        <Column>
+        <p> Hi, it seems there was an error with the login service. Try again in a few minutes. </p>
+        </Column>
+      </Row>
     )
   }
 
