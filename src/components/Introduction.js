@@ -1,20 +1,20 @@
 import React from 'react';
 
-const containerStyles = {
+import { Row, Column } from 'react-foundation';
+
+
+const RowStyle = {
+  minWidth: '100%',
   backgroundColor: '#212121',
-  minHeight: 600,
   color: '#EDE7F6',
   fontFamily: 'Roboto',
   paddingTop: 50,
-  width:'100%',
+  paddingRight: 15,
+  paddingLeft: 15,
   margin: 'auto',
+  paddingBottom: 80,
 }
 
-const rowStyle = {
-  width:600,
-  margin: 'auto',
-  textAlign: 'center',
-}
 
 
 export default class Introduction extends React.Component {
@@ -31,13 +31,16 @@ export default class Introduction extends React.Component {
 
   render() {
     return (
-      <div style={containerStyles}>
-        <div style={rowStyle}>
-        <h1> {this.state.header} </h1>
-        <h3> {this.state.subheader} </h3>
-        <p> {this.state.introduction} </p>
-        </div>
-      </div>
+      <Row style={RowStyle}>
+        
+        <Column small={12} large={6} offsetOnLarge={3}>
+        
+          <h2> {this.state.subheader} </h2>
+          <p> {this.state.introduction} </p>
+        
+        </Column>
+        
+      </Row>
     )
   }
 }

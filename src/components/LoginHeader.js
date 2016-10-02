@@ -2,16 +2,11 @@ import React from 'react';
 import Foundation from 'react-foundation';
 import { Row, Column } from 'react-foundation';
 
-const rowStyles = {
-  width: '100%',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  maxWidth: 'initial'
-}
+const RowStyle = {
+  minWidth: '100%',
+  }
 
 const containerStyles = {
-  width: 500,
-  margin: 'auto',
   textAlign: 'center',
   backgroundColor: '#3F51B5',
   color: 'white',
@@ -33,9 +28,9 @@ export default class LoginContainer extends React.Component {
 
   render() {
     return (
-      <Row className="display" style={rowStyles}>
+      <Row className="display" style={RowStyle}>
        
-        <Column style={containerStyles} small={12} large={4}>
+        <Column style={containerStyles} small={12} medium={8} large={6} offsetOnMedium={2} offsetOnLarge={3} >
           <h1> {this.state.title} </h1>
         </Column>
 

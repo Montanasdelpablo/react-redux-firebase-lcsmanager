@@ -1,7 +1,8 @@
 import React from 'react';
 import SkyLight from 'react-skylight';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import Foundation from 'react-foundation';
 
 const containerStyles = {
 
@@ -20,7 +21,7 @@ export default class LoginSuccess extends React.Component {
     return (
         <div>
 
-          <Link to="/dashboard">
+          <Link to="/dashboard" isExpanded>
               <RaisedButton primary={true}
               fullWidth={true}
               label="Enter Dashboard"

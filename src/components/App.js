@@ -19,9 +19,17 @@ const containerStyles = {
   paddingTop: 175,
   backgroundImage: 'url(' + images.headerimg + ')',
   backgroundSize: 'cover',
-
+  fontFamily: 'Helvetica'
 }
 
+const wrapper = {
+  width:'100%',
+  height:'100%',
+}
+
+const RowStyle = {
+  minWidth: '100%',
+}
 
 
 export default class App extends React.Component {
@@ -31,7 +39,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-          <Row className="display">
+          <Row style={RowStyle} className="display">
             
               <Column style={containerStyles} small={12} large={12}>
                 
@@ -42,7 +50,7 @@ export default class App extends React.Component {
               </Column>
                  
         </Row>
-        <Row className="display">
+        <Row style={RowStyle} className="display">
 
                 <Column small={12} large={12}>
 

@@ -25,17 +25,23 @@ const containerStyles = {
   paddingTop: 20,
   paddingBottom: 20,
   backgroundColor: 'white',
-  margin: 'auto',
   textAlign: 'center',
-  width: 500
+ 
 }
 
 const inputStyles = {
-  color: '#3F51B5'
+  color: '#3F51B5',
+  width: 350,
+  shadowOpacity: 0
 }
 
 const buttonStyles = {
   
+}
+
+const RowStyle = {
+  minWidth: '100%',
+
 }
 
 const initialState = {
@@ -211,16 +217,18 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <Row className="display">
-        <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
-          <Row>
-            <Column small={12} large={6}> 
+      <Row style={RowStyle} className="display">
+        <Column style={containerStyles} small={12} medium={8} large={6} offsetOnMedium={2} offsetOnLarge={3}>
+          <Row style={RowStyle}> 
+            <Column small={12} large={12}> 
               <h2> Login </h2>
             </Column>
           </Row>
 
-          <Row>
-            <Column small={12} large={6}>
+          <br />
+
+          <Row style={RowStyle}>
+            <Column small={12} large={12}>
               <TextField
                 defaultValue={this.state.email}
                 type="text"
@@ -228,10 +236,11 @@ export default class LoginContainer extends React.Component {
                 onChange={this.handleEmailChange}
                 floatingLabelText="E-mail"
                 />
-            </Column>
+             </Column>
           </Row>
-          <Row>
-            <Column>
+          
+          <Row style={RowStyle}>
+            <Column small={12}>
               <TextField
                   defaultValue={this.state.password}
                   style={inputStyles}
@@ -242,8 +251,11 @@ export default class LoginContainer extends React.Component {
             </Column>
           </Row>
 
-          <Row>
-          <Column small={12} large={6}>
+          <br />
+          <br />
+
+          <Row style={RowStyle}>
+          <Column small={12} large={12}>
           <LoginSuccess display={this.state.logInSuccess}/>
           </Column>
           </Row>
@@ -251,8 +263,8 @@ export default class LoginContainer extends React.Component {
           <br />
           <br />
 
-          <Row>
-            <Column small={12} large={6}>
+          <Row style={RowStyle}>
+            <Column small={12} large={12}>
                 <RaisedButton style={buttonStyles}
                               secondary={true}
                               onClick={() => this.changeSignUp(true)}
@@ -283,76 +295,113 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <Row className="display">
-        <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
-            <h2> Sign up </h2>
+      <Row style={RowStyle} className="display">
+        <Column style={containerStyles} small={12} medium={8} large={4} offsetOnMedium={2} offsetOnLarge={4}>
+            <Row style={RowStyle}> 
+              <Column small={12} large={12}> 
+                <h2> Sign up </h2>
+              </Column>
+            </Row>
 
-            <TextField
-            defaultValue={this.state.email}
-            type="text"
-            style={inputStyles}
-            onChange={this.handleEmailChange}
-            ref="email"
-            floatingLabelText="E-mail"
-              />
-            <br />
-            <TextField
-            defaultValue={this.state.password}
-            style={inputStyles}
-            onChange={this.handlePasswordChange}
-            type="password"
-            ref="password"
-            floatingLabelText="Password"
-              />
-            <br />
-            <br />
             <br />
 
-            {this.signupSuccess}
+              <Row style={RowStyle}>
+                <Column small={12} large={12} >
+                  <TextField
+                  defaultValue={this.state.email}
+                  type="text"
+                  style={inputStyles}
+                  onChange={this.handleEmailChange}
+                  ref="email"
+                  floatingLabelText="E-mail"
+                    />
+                </Column>
+              </Row>
 
-            <RaisedButton style={buttonStyles}
+              <Row style={RowStyle}> 
+                <Column small={12} large={12}>
+                    <TextField
+                    defaultValue={this.state.password}
+                    style={inputStyles}
+                    onChange={this.handlePasswordChange}
+                    type="password"
+                    ref="password"
+                    floatingLabelText="Password"
+                      />
+                </Column>
+              </Row>
+
+              <br />
+              <br />
+              
+              <Row>
+                <Column small={12} large={120}>
+                    {this.signupSuccess}
+                </Column>
+              </Row>
+
+              <br />
+              <br />
+
+              <Row>
+                <Column small={12} large={12}>
+                  <RaisedButton style={buttonStyles}
                           secondary={true}
                           onClick={() => this.changeSignUp(false)}
                           label="Go back"/>
-            <RaisedButton style={buttonStyles}
+                  <RaisedButton style={buttonStyles}
                           primary={true}
                           onClick={() => this.submitSignup()}
                           label="Sign up now" />
 
-
-        </Column>
+                </Column>
+              </Row>
+       </Column>
       </Row>
     )
   }
 
   renderForgotPassword() {
     return (
-     <Row className="display" >
-      <Column style={containerStyles} small={12} medium={6} large={4} offsetOnLarge={4}>
-        <h2> Forgot your password? </h2>
+     <Row style={RowStyle} className="display" >
+      <Column style={containerStyles} small={12} medium={8} large={4} offsetOnMedium={2} offsetOnLarge={4}>
+       <Row style={RowStyle}> 
+            <Column small={12} large={12}>
+               <h2> Forgot your password? </h2>
+            </Column>
+       </Row>
 
-        <TextField
-        defaultValue={this.state.email}
-        type="text"
-        style={inputStyles}
-        onChange={this.handleEmailChange}
-        ref="email"
-        floatingLabelText="E-mail"
-          />
-        <br />
-        <br />
-        <br />
+       <br />
 
+       <Row style={RowStyle}>
+            <Column small={12}>
+                <TextField
+                defaultValue={this.state.email}
+                type="text"
+                style={inputStyles}
+                onChange={this.handleEmailChange}
+                ref="email"
+                floatingLabelText="E-mail"
+                  />
+            </Column>
+      </Row>
 
-        <RaisedButton style={buttonStyles}
-                      secondary={true}
-                      onClick={() => this.changeForgotPassword(false)}
-                      label="Go back"/>
-        <RaisedButton style={buttonStyles}
-                      primary={true}
-                      onClick={() => this.submitPasswordForgotten()}
-                      label="Send to E-mail" />
+      <br />
+      <br />
 
+      <Row style={RowStyle}>
+            <Column small={12}>
+            
+              <RaisedButton style={buttonStyles}
+                            secondary={true}
+                            onClick={() => this.changeForgotPassword(false)}
+                            label="Go back"/>
+              <RaisedButton style={buttonStyles}
+                            primary={true}
+                            onClick={() => this.submitPasswordForgotten()}
+                            label="Send to E-mail" />
+            </Column>
+      </Row>
 
         </Column>
       </Row>

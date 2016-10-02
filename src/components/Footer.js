@@ -1,9 +1,10 @@
 import React from 'react';
+import { Row, Column } from 'react-foundation';
 
-const containerStyles = {
+
+const RowStyle = {
+  minWidth: '100%',
   color: 'black',
-  width: '100%',
-  height: 40,
   backgroundColor: '#EDE7F6',
   fontFamily: 'Roboto',
   position: 'fixed',
@@ -11,12 +12,7 @@ const containerStyles = {
 }
 
 const smStyle = {
-  width: 30,
   listStyleType: 'none',
-  display: 'inline-block',
-  marginRight: 5,
-  marginLeft: 5,
-  marginTop: 5,
   textAlign: 'center',
 }
 
@@ -42,13 +38,25 @@ export default class Footer extends React.Component {
 
   render() {
     return (
-      <div style={containerStyles}>
-        <li style={smStyle}> <img src="../assets/images/facebook.png" /> </li>
-        <li style={smStyle}> <img src="../assets/images/twitter.png" /> </li>
-        <li style={smStyle}> <img src="../assets/images/github-sign.png" /> </li>
+      <Row style={RowStyle}>
+        <Column small={12} large={4} offsetOnLarge={5}>
+          <Row>
+            <Column small={2} large={4}>
+              <li style={smStyle}> <img src="../assets/images/facebook.png" /> </li>
+            </Column>
+            <Column small={2} large={4}>
+              <li style={smStyle}> <img src="../assets/images/twitter.png" /> </li>
+            </Column>
+            <Column small={2} large={4}>  
+              <li style={smStyle}> <img src="../assets/images/github-sign.png" /> </li>
+            </Column>
+          </Row>
+        </Column>
 
-        <li style={copyrightStyle}> &copy; made by Montanas </li>
-      </div>
+        <Column small={10} large={2}>
+             <li style={copyrightStyle}> &copy; made by Montanas </li>
+        </Column>
+      </Row>
     )
   }
 }
