@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Provider from 'redux';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, Link, IndexRoute, hashHistory } from 'react-router';
 
 import Dashboard from './components/DashboardContainer.js';
@@ -13,9 +13,9 @@ export default class app extends React.Component {
 
   render() {
     return(
-      <div>
+      <MuiThemeProvider>
         <App />
-      </div>
+      </MuiThemeProvider>
     )
   }
 

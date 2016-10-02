@@ -1,9 +1,9 @@
 import React from 'react';
 
 const containerStyles = {
-  backgroundColor: '#3F51B5',
+  backgroundColor: '#212121',
   minHeight: 600,
-  color: 'white',
+  color: '#EDE7F6',
   fontFamily: 'Roboto',
   paddingTop: 50,
   width:'100%',

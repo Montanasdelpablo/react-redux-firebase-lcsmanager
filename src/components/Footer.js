@@ -4,7 +4,7 @@ const containerStyles = {
   color: 'black',
   width: '100%',
   height: 40,
-  backgroundColor: 'white',
+  backgroundColor: '#EDE7F6',
   fontFamily: 'Roboto',
   position: 'fixed',
   bottom: 0,
@@ -26,7 +26,7 @@ const copyrightStyle = {
   marginRight: 8,
   listStyleType: 'none',
   textAlign: 'right',
-  color: '#90A4AE',
+  color: '#212121E',
   float: 'right',
 }
 

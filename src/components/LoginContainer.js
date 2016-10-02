@@ -4,6 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 
+import Foundation from 'react-foundation';
+import { Row, Column } from 'react-foundation';
+
 import * as firebase from 'firebase';
 
 import LoginSuccess from './LoginContainer/LoginSuccess';
@@ -19,13 +22,13 @@ const config = {
  firebase.initializeApp(config);
 
 const containerStyles = {
-  margin: 'auto',
-  width: '30%',
   paddingTop: 20,
   paddingBottom: 20,
-  textAlign: 'center',
   backgroundColor: 'white',
-  position: 'relative',
+  width: 500,
+  margin: 'auto',
+  textAlign: 'center',
+  
 }
 
 const inputStyles = {
@@ -33,8 +36,7 @@ const inputStyles = {
 }
 
 const buttonStyles = {
-  marginRight: 4,
-  marginLeft: 4,
+  
 }
 
 const initialState = {
@@ -46,6 +48,7 @@ const initialState = {
   updated: false,
   signUpSuccess: false,
   logInSuccess: false,
+  uid: ''
 }
 
 export default class LoginContainer extends React.Component {
@@ -59,6 +62,7 @@ export default class LoginContainer extends React.Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.submitSignup = this.submitSignup.bind(this)
     this.submitLogin = this.submitLogin.bind(this)
+    this.handleAuth = this.handleAuth.bind(this)
   }
 
   componentWillReceiveProps(props){
@@ -112,8 +116,20 @@ export default class LoginContainer extends React.Component {
     console.log("Password state field says: " + this.state.password)
   }
 
-  handleAuth(result){
+  handleAuth(result) {
     console.log(result)
+    var that = this
+    if (result) {
+           // User is signed in.
+           that.setState({
+            logInSuccess: true,
+            uid: result.uid
+          })
+        } else {
+          // No user is signed in.
+          console.log("Something went wrong. Try again later.")
+        }
+      
   }
 
   submitLogin() {
@@ -121,7 +137,11 @@ export default class LoginContainer extends React.Component {
     var password = this.state.password
     var that = this
 
-    firebase.auth().signInWithEmailAndPassword(email, password).then((result) => this.handleAuth.bind(this, result)).catch(function(error, authData) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(function(result){
+      that.handleAuth(result)
+    })
+    .catch(function(error, authData) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -141,19 +161,10 @@ export default class LoginContainer extends React.Component {
             console.log("Error logging user in:", error);
         }
       }
+      
     });
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          that.setState({
-            logInSuccess: true
-          })
-        } else {
-          // No user is signed in.
-          console.log("You are not logged in")
-        }
-      });
+    
   }
 
   submitSignup() {
@@ -201,7 +212,8 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <div style={containerStyles} ref="form">
+      <Row className="display" style={containerStyles}>
+        <Column small={10} medium={6} large={4} offsetOnLarge={4}>
         <h2> Login </h2>
 
         <TextField
@@ -209,7 +221,6 @@ export default class LoginContainer extends React.Component {
           type="text"
           style={inputStyles}
           onChange={this.handleEmailChange}
-          ref="email"
           floatingLabelText="E-mail"
           />
         <br />
@@ -218,7 +229,6 @@ export default class LoginContainer extends React.Component {
             style={inputStyles}
             onChange={this.handlePasswordChange}
             type="password"
-            ref="password"
             floatingLabelText="Password"
           />
         <br />
@@ -243,8 +253,8 @@ export default class LoginContainer extends React.Component {
                       className="btn btn-primary"
                       onClick={() => this.submitLogin()}
                                     label="Log in" />
-
-      </div>
+        </Column>
+      </Row>
     )
   }
 
@@ -252,49 +262,52 @@ export default class LoginContainer extends React.Component {
 
 
     return (
-      <div style={containerStyles}>
-        <h2> Sign up </h2>
+      <Row className="display" style={containerStyles}>
+        <Column small={10} medium={6} large={4} offsetOnLarge={4}>
+            <h2> Sign up </h2>
 
-        <TextField
-        defaultValue={this.state.email}
-        type="text"
-        style={inputStyles}
-        onChange={this.handleEmailChange}
-        ref="email"
-        floatingLabelText="E-mail"
-          />
-        <br />
-        <TextField
-        defaultValue={this.state.password}
-        style={inputStyles}
-        onChange={this.handlePasswordChange}
-        type="password"
-        ref="password"
-        floatingLabelText="Password"
-          />
-        <br />
-        <br />
-        <br />
+            <TextField
+            defaultValue={this.state.email}
+            type="text"
+            style={inputStyles}
+            onChange={this.handleEmailChange}
+            ref="email"
+            floatingLabelText="E-mail"
+              />
+            <br />
+            <TextField
+            defaultValue={this.state.password}
+            style={inputStyles}
+            onChange={this.handlePasswordChange}
+            type="password"
+            ref="password"
+            floatingLabelText="Password"
+              />
+            <br />
+            <br />
+            <br />
 
-        {this.signupSuccess}
+            {this.signupSuccess}
 
-        <RaisedButton style={buttonStyles}
-                      secondary={true}
-                      onClick={() => this.changeSignUp(false)}
-                      label="Go back"/>
-        <RaisedButton style={buttonStyles}
-                      primary={true}
-                      onClick={() => this.submitSignup()}
-                      label="Sign up now" />
+            <RaisedButton style={buttonStyles}
+                          secondary={true}
+                          onClick={() => this.changeSignUp(false)}
+                          label="Go back"/>
+            <RaisedButton style={buttonStyles}
+                          primary={true}
+                          onClick={() => this.submitSignup()}
+                          label="Sign up now" />
 
 
-      </div>
+        </Column>
+      </Row>
     )
   }
 
   renderForgotPassword() {
     return (
-      <div style={containerStyles}>
+     <Row className="display" style={containerStyles}>
+      <Column small={10} medium={6} large={4} offsetOnLarge={4}>
         <h2> Forgot your password? </h2>
 
         <TextField
@@ -320,7 +333,8 @@ export default class LoginContainer extends React.Component {
                       label="Send to E-mail" />
 
 
-      </div>
+        </Column>
+      </Row>
     )
   }
 

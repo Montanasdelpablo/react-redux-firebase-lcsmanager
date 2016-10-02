@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Paper from 'material-ui/Paper';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import Foundation from 'react-foundation';
+import { Row, Column } from 'react-foundation';
 
 import Introduction from './Introduction.js';
 import LoginHeader from './LoginHeader.js';
@@ -28,21 +30,30 @@ export default class App extends React.Component {
   render() {
 
     return (
-        <div>
-        <MuiThemeProvider>
-            <Paper
-            zDepth={4}
-            style={containerStyles}>
+      <div>
+          <Row className="display">
+            
+              <Column style={containerStyles} small={12} large={12}>
+                
 
-              <LoginHeader />
-              <LoginContainer />
+                    <LoginHeader />
+                    <LoginContainer />
+                  
+              </Column>
+                 
+        </Row>
+        <Row className="display">
 
-            </Paper>
-        </MuiThemeProvider>
-            <Introduction />
-            <Footer />
+                <Column small={12} large={12}>
 
-       </div>
+                  <Introduction />
+
+                  <Footer />
+
+                </Column>
+        </Row>
+      </div>
+      
 
     );
   }

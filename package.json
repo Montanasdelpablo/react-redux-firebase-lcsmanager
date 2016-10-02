@@ -24,6 +24,7 @@
     "react": "^0.14.6",
     "react-bootstrap": "^0.30.3",
     "react-dom": "^0.14.6",
+    "react-foundation": "^0.7.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-skylight": "^0.4.1",

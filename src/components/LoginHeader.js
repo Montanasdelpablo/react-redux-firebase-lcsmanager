@@ -1,8 +1,10 @@
 import React from 'react';
+import Foundation from 'react-foundation';
+import { Row, Column } from 'react-foundation';
 
 const containerStyles = {
   margin: 'auto',
-  width: '30%',
+  width: 500,
   textAlign: 'center',
   backgroundColor: '#3F51B5',
   color: 'white',
@@ -25,9 +27,11 @@ export default class LoginContainer extends React.Component {
 
   render() {
     return (
-      <div style={containerStyles}>
-        <h1> {this.state.title} </h1>
-      </div>
+      <Row style={containerStyles}>
+        <Column small={12} large={4}>
+          <h1> {this.state.title} </h1>
+        </Column>
+      </Row>
     )
   }
 }
