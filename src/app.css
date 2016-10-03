@@ -5,6 +5,12 @@ html, body {
   height:100%;
 }
 
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
 #app {
   background-color:#fff;
   width:100%;
@@ -17,3 +23,23 @@ html, body {
   margin: 0;
 }
 
+.row {
+  max-width: 100%;
+}
+.profile-pic {
+  width: 150px;
+  height:80px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  min-width: 100%;
+  position: absolute;
+  display: block;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}

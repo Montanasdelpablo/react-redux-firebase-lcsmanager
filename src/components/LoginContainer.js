@@ -3,13 +3,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
-
+import FontIcon from 'material-ui/FontIcon';
 import Foundation from 'react-foundation';
 import { Row, Column } from 'react-foundation';
 
 import * as firebase from 'firebase';
 
 import LoginSuccess from './LoginContainer/LoginSuccess';
+
 
 
 const config = {
@@ -31,7 +32,7 @@ const containerStyles = {
 
 const inputStyles = {
   color: '#3F51B5',
-  width: 350,
+  width: 450,
   shadowOpacity: 0
 }
 
@@ -53,8 +54,8 @@ const initialState = {
   updated: false,
   signUpSuccess: false,
   logInSuccess: false,
-  uid: ''
-}
+  uid: '',
+  }
 
 export default class LoginContainer extends React.Component {
 
@@ -68,11 +69,13 @@ export default class LoginContainer extends React.Component {
     this.submitSignup = this.submitSignup.bind(this)
     this.submitLogin = this.submitLogin.bind(this)
     this.handleAuth = this.handleAuth.bind(this)
+    
   }
 
   componentWillReceiveProps(props){
     this.replaceState(props)
   }
+
 
   reset() {
     this.setState(initialState);
@@ -135,6 +138,29 @@ export default class LoginContainer extends React.Component {
           console.log("Something went wrong. Try again later.")
         }
       
+  }
+
+  submitGoogleLogin() {
+    // Providers
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth.plus.login');
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // 
+    });
+
   }
 
   submitLogin() {
@@ -220,11 +246,13 @@ export default class LoginContainer extends React.Component {
       <Row style={RowStyle} className="display">
         <Column style={containerStyles} small={12} medium={8} large={6} offsetOnMedium={2} offsetOnLarge={3}>
           <Row style={RowStyle}> 
-            <Column small={12} large={12}> 
-              <h2> Login </h2>
+            <Column small={12} large={12}>
+              <h2> LOGIN </h2>
+              
             </Column>
           </Row>
 
+        
           <br />
 
           <Row style={RowStyle}>
@@ -255,17 +283,46 @@ export default class LoginContainer extends React.Component {
           <br />
 
           <Row style={RowStyle}>
-          <Column small={12} large={12}>
-          <LoginSuccess display={this.state.logInSuccess}/>
-          </Column>
+            <Column small={12} large={6} offsetOnLarge={3}>
+              <LoginSuccess display={this.state.logInSuccess}/>
+            </Column>
           </Row>
 
           <br />
+
+          <Row style={RowStyle}>
+            <Column small={12} large={6} offsetOnLarge={3}>
+              <RaisedButton   style={buttonStyles}
+                              fullWidth={true}
+                              secondary={true}
+                              href="#"
+                              icon={<FontIcon className="material-icons">+</FontIcon>}
+                              onClick={() => this.submitGoogleLogin()}
+                              label="Login with Google" />
+            </Column>          
+          </Row>
+
+          <br />
+
+          <Row style={RowStyle}>
+            <Column small={12} large={6} offsetOnLarge={3}>
+             <RaisedButton style={buttonStyles}
+                                fullWidth={true}
+                                labelColor="#EDE7F6"
+                                backgroundColor="#3F51B5"
+                                className="btn btn-primary"
+                                onClick={() => this.submitLogin()}
+                                              label="Log in" />
+              
+            </Column>          
+          </Row>
+
           <br />
 
           <Row style={RowStyle}>
             <Column small={12} large={12}>
-                <RaisedButton style={buttonStyles}
+                
+                <FlatButton style={buttonStyles}
                               secondary={true}
                               onClick={() => this.changeSignUp(true)}
                               label="Sign up" />
@@ -277,15 +334,10 @@ export default class LoginContainer extends React.Component {
                               label="Forgot password?" />
             
             
-                <RaisedButton style={buttonStyles}
-                                primary={true}
-                                className="btn btn-primary"
-                                onClick={() => this.submitLogin()}
-                                              label="Log in" />
-              
+                
             </Column>
           </Row>
-        
+          
         </Column>
       </Row>
     )
@@ -296,10 +348,10 @@ export default class LoginContainer extends React.Component {
 
     return (
       <Row style={RowStyle} className="display">
-        <Column style={containerStyles} small={12} medium={8} large={4} offsetOnMedium={2} offsetOnLarge={4}>
+        <Column style={containerStyles} small={12} medium={8} large={6} offsetOnMedium={2} offsetOnLarge={3}>
             <Row style={RowStyle}> 
               <Column small={12} large={12}> 
-                <h2> Sign up </h2>
+                <h2> SIGN UP </h2>
               </Column>
             </Row>
 
@@ -335,7 +387,7 @@ export default class LoginContainer extends React.Component {
               <br />
               
               <Row>
-                <Column small={12} large={120}>
+                <Column small={12} large={12}>
                     {this.signupSuccess}
                 </Column>
               </Row>
@@ -345,12 +397,13 @@ export default class LoginContainer extends React.Component {
 
               <Row>
                 <Column small={12} large={12}>
-                  <RaisedButton style={buttonStyles}
+                  <FlatButton style={buttonStyles}
                           secondary={true}
                           onClick={() => this.changeSignUp(false)}
                           label="Go back"/>
                   <RaisedButton style={buttonStyles}
-                          primary={true}
+                          labelColor="#EDE7F6"
+                          backgroundColor="#3F51B5"
                           onClick={() => this.submitSignup()}
                           label="Sign up now" />
 
@@ -364,10 +417,10 @@ export default class LoginContainer extends React.Component {
   renderForgotPassword() {
     return (
      <Row style={RowStyle} className="display" >
-      <Column style={containerStyles} small={12} medium={8} large={4} offsetOnMedium={2} offsetOnLarge={4}>
+      <Column style={containerStyles} small={12} medium={8} large={6} offsetOnMedium={2} offsetOnLarge={3}>
        <Row style={RowStyle}> 
             <Column small={12} large={12}>
-               <h2> Forgot your password? </h2>
+               <h2> FORGOT YOUR PASSWORD? </h2>
             </Column>
        </Row>
 
@@ -392,12 +445,13 @@ export default class LoginContainer extends React.Component {
       <Row style={RowStyle}>
             <Column small={12}>
             
-              <RaisedButton style={buttonStyles}
+              <FlatButton style={buttonStyles}
                             secondary={true}
                             onClick={() => this.changeForgotPassword(false)}
                             label="Go back"/>
               <RaisedButton style={buttonStyles}
-                            primary={true}
+                            labelColor="#EDE7F6"
+                            backgroundColor="#3F51B5"
                             onClick={() => this.submitPasswordForgotten()}
                             label="Send to E-mail" />
             </Column>
@@ -411,7 +465,7 @@ export default class LoginContainer extends React.Component {
   renderNormal() {
     return (
       <Row style={containerStyles}>
-        <Column>
+        <Column small={12} large={6} offsetOnLarge={3}>
         <p> Hi, it seems there was an error with the login service. Try again in a few minutes. </p>
         </Column>
       </Row>

@@ -12,7 +12,7 @@ const RowStyle = {
   paddingRight: 15,
   paddingLeft: 15,
   margin: 'auto',
-  paddingBottom: 80,
+  paddingBottom: 100,
 }
 
 

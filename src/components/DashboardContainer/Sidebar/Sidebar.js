@@ -1,15 +1,22 @@
 import React from 'react';
-import { Grid, Row, Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Row, Column } from 'react-foundation';
 
 const containerStyles = {
-  width: 380,
+  minWidth: '100%',
   height: '100%',
+  padding: 0,
+  margin: 0,
   paddingTop: 0,
   marginTop: 0,
+  
 }
 
 const sidebarStyles = {
-  width: 380,
+  width: 350,
+  margin: 0,
+  padding: 0,
+  minHeight: '100%',
+  backgroundColor: '#EDE7F6'
 }
 
 export default class NavBar extends React.Component {
@@ -21,8 +28,8 @@ export default class NavBar extends React.Component {
   render() {
       return (
         <Row style={containerStyles}>
-          <Col xs={12} md={4} style={containerStyles}>
-            <div id="sidebar-wrapper" style={sidebarStyles}>
+          <Column small={12} large={4} style={sidebarStyles}>
+            <div id="sidebar-wrapper">
                <ul className="sidebar-nav">
                    <li className="sidebar-brand">
                        <a href="#">
@@ -52,7 +59,7 @@ export default class NavBar extends React.Component {
                    </li>
                </ul>
            </div>
-           </Col>
+           </Column>
        </Row>
 
       );

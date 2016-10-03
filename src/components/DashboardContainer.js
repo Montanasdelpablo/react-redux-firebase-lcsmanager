@@ -2,16 +2,18 @@ import React from 'react';
 import NavBar from './DashboardContainer/Navbar/Navbar.js';
 import Sidebar from './DashboardContainer/Sidebar/Sidebar.js'
 
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Column } from 'react-foundation';
 
 import * as firebase from 'firebase';
 
 const containerStyles = {
-    width: '100%',
+    minWidth: '100%',
     height: '100%',
     padding: 0,
     margin: 0,
 }
+
+
 
 
 
@@ -25,14 +27,16 @@ export default class Dashboard extends React.Component {
 
   render() {
       return (
-        <Grid style={containerStyles}>
+        <Row style={containerStyles}>
+          <Column large={12} small={12} style={containerStyles}> 
+          <NavBar> </NavBar>
 
-        <NavBar> </NavBar>
-        <Sidebar> </Sidebar>
-        <Row>
-          <Col xs={12} md={8}> This is the {this.state.title} </Col>
+          <Sidebar> </Sidebar>
+          <Row style={containerStyles}>
+            <Column small={12} large={9}> This is the {this.state.title} </Column>
+          </Row>
+          </Column>
         </Row>
-        </Grid>
       );
   }
 }

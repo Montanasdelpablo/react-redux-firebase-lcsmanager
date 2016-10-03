@@ -1,15 +1,23 @@
 import React from 'react';
-import { Grid, Row, Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Menu, MenuItem, Row, Column } from 'react-foundation';
 
 const containerStyles = {
-  width: '100%',
-  height: 80
+  minWidth: '100%',
+  height: 80,
+  backgroundColor: '#212121',
+  margin: 0,
+  padding: 0,
+  color: 'white',
+  
 }
 
-const profilepic = {
-  width: 105,
-  height: 75,
+const nestedStyles = {
+  minWidth: '100%',
+  height: 'auto',
+  margin: 0,
+  padding: 0,
 }
+
 
 
 export default class NavBar extends React.Component {
@@ -27,37 +35,57 @@ export default class NavBar extends React.Component {
   render() {
       return (
         <Row style={containerStyles}>
-          <Col xs={12} md={12}>
-          <Navbar default>
-              <Navbar.Header>
-                <Navbar.Brand>
-                  <a href="#">LCS Manager</a>
-                </Navbar.Brand>
-                <Navbar.Toggle />
-              </Navbar.Header>
-              <Navbar.Collapse>
-                <Nav>
+          <Column id="mainNavigation" large={12} small={12}>
+            <Row style={containerStyles}> 
+              <Column small={12} medium={9} large={7}>
+                <Row style={nestedStyles}>
+                  <Column small={7} medium={8} large={7}>
+                    <h2> LCS Manager </h2>
+                  </Column>
 
-                </Nav>
-                <Nav pullRight>
+                  <Column small={5} medium={4} large={4}>
+                  <h3> Dashboard </h3>
+                  </Column>
+                </Row>
+              </Column>
+              
+            
+              <Column small={12} medium={6} large={6}>
+                    <Row style={nestedStyles}> 
+                      <Column small={6} large={6}>  
+                          <Row style={nestedStyles}>
+                            {/* Here comes trophy list */}
+                              <Column small={12} medium={12} large={12}>
+                                Trophy list
+                              </Column>
+                          </Row>
+                          <Row style={nestedStyles}>
+                            {/* Here comes profile details list */}
+                              <Column small={12} large={12}>
+                                <Menu>
+                                  <MenuItem>
+                                    <a href="#"> Score: </a>
+                                  </MenuItem>
+                                  <MenuItem>
+                                    <a href="#"> Coins: </a>
+                                  </MenuItem>
+                                </Menu>
+                              </Column >
+                          </Row>
+                      </Column>
 
-                  <NavDropdown eventKey={3} title="Profile" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1}>My profile</MenuItem>
-                    <MenuItem eventKey={3.2}>Edit profile</MenuItem>
-                    <MenuItem eventKey={3.3}>Messages</MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey={3.3}>Continue game</MenuItem>
-                    <MenuItem eventKey={3.4}>Log out</MenuItem>
-                  </NavDropdown>
-                  <Col xs={12} md={3}>
-                  <NavItem eventKey={1} href="#"><img style={profilepic} src="../../../assets/images/StarGuardianLux.jpg" /> </NavItem>
-                  </Col>
-
-                  <br />
-                </Nav>
-              </Navbar.Collapse>
-            </Navbar>
-          </Col>
+                      <Column small={6} large={6}>
+                        <Row style={nestedStyles}>
+                          {/* Here comes profile pic */}
+                          <Column className="profile-pic" small={4} large={2}>
+                            <img src="../../../assets/images/dummyprofilepic.jpe" />
+                          </Column>
+                        </Row >
+                      </Column>
+                    </Row>
+                </Column>
+              </Row>
+            </Column>
         </Row>
       );
   }
